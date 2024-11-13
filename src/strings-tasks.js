@@ -19,8 +19,8 @@
  *   getStringLength(null) => 0
  *   getStringLength(undefined) => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(value) {
+  return value.length;
 }
 
 /**
@@ -38,7 +38,7 @@ function getStringLength(/* value */) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return value.valueOf();
+  return value instanceof String || typeof value === 'string';
 }
 
 /**
@@ -69,7 +69,7 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  return value.charAt(1);
+  return value[0];
 }
 
 /**
@@ -163,7 +163,7 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  return str.remove(value);
+  return str.remove(value, '');
 }
 
 /**
@@ -225,8 +225,8 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  return `${minutes}:${seconds}`;
 }
 
 /**
