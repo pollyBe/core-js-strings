@@ -194,7 +194,7 @@ function sumOfCodes(str) {
  *   startsWith('Hello World', 'Hello') => true
  */
 function startsWith(str, substr) {
-  return str.startsWith(substr);
+  return str.startsWith(substr, 0);
 }
 
 /**
@@ -226,7 +226,9 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  return `${minutes}:${seconds}`;
+  const min = minutes.toString();
+  const sec = seconds.toString();
+  return `${min.padStart(2, 0)}:${sec.padStart(2, 0)}`;
 }
 
 /**
@@ -240,7 +242,7 @@ function formatTime(minutes, seconds) {
  *   reverseString('12345') => '54321'
  */
 function reverseString(str) {
-  return str.reverse();
+  return str.split('').reverse().join('');
 }
 
 /**
@@ -288,8 +290,9 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = str.match(/[aeiouy]/gi);
+  return vowels === null ? 0 : vowels.length;
 }
 
 /**
@@ -305,8 +308,14 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  // str.toLowerCase().replace(/\W|_/g, '');
+  // return str.toLowerCase() === str.toLowerCase().split('').reverse().join('');
+  // какого хуя не работает, я не знаю
+  const re = /[\W_]/g;
+  const lowRegStr = str.toLowerCase().replace(re, '');
+  const reverseStr = lowRegStr.split('').reverse().join('');
+  return reverseStr === lowRegStr;
 }
 
 /**
@@ -321,8 +330,17 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(str) {
+  const x = str.split(' ');
+  let strLength = '';
+  let maxLength = 0;
+  for (let i = 0; i < x.length; i += 1) {
+    if (x[i].length > maxLength) {
+      strLength = x[i];
+      maxLength = x[i].length;
+    }
+  }
+  return strLength;
 }
 
 /**
